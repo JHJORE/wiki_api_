@@ -51,7 +51,6 @@ def create_Wiki(Wiki: schemas.WikiCreate, db: Session = Depends(get_db)):
 
 @app.get("/wiki/{Wikiid}", response_model=schemas.Wiki)
 def read_Wiki(Wikiid: int, db: Session = Depends(get_db)):
-    print("success")
     db_Wiki = crud.get_Wiki(db, Wikiid=Wikiid)
     if db_Wiki is None:
         raise HTTPException(status_code=404, detail="Wiki not found")

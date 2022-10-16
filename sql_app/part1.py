@@ -27,4 +27,3 @@ def wiki_repseonse(topic):
     print(count)
     main.create_Wiki(Wiki=Wiki_page, db=db)
     
-wiki_repseonse("Vipps")
