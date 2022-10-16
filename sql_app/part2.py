@@ -18,9 +18,10 @@ text = "?"
 
 def button_callback():
     wiki = entry_1.get()
+    wiki_repseonse(wiki)
     entry_1.delete(0, tkinter.END)
     wiki = get_wiki(wiki)
-    set_text(wiki)
+    #set_text(wiki)
     
 
 def set_text(wiki):
@@ -30,8 +31,6 @@ def set_text(wiki):
     label_2.config(text = text_var)
 
     
-
-
 
 
 frame_1 = customtkinter.CTkFrame(master=app)
@@ -57,7 +56,7 @@ def get_wiki(value):
     PARAMS = {"WikiTitle": value}
     response = requests.get(url = URL, params = PARAMS)
     info = response.json()
-    
+    print(info)
     return info
 
 

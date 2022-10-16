@@ -42,12 +42,7 @@ async def page(request: Request, page_name: str):
 
 @app.post("/wiki/", response_model=schemas.Wiki)
 def create_Wiki(Wiki: schemas.WikiCreate, db: Session = Depends(get_db)):
-    db_Wiki = crud.get_WikiByTitle(db, Title=Wiki.Title)
-    if db_Wiki:
-        raise HTTPException(status_code=400, detail="Page already registered")
     return crud.create_Wiki(db=db, Wiki=Wiki)
-
-
 
 @app.get("/wiki/{Wikiid}", response_model=schemas.Wiki)
 def read_Wiki(Wikiid: int, db: Session = Depends(get_db)):
