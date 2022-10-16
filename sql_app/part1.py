@@ -1,14 +1,15 @@
 import json
 import requests
 from bs4 import BeautifulSoup
+import database 
 import models, main
-from database import SessionLocal
 
-db = SessionLocal()
+db = database.SessionLocal()
 
 
-def wiki_repseonse():
-    response_API = requests.get("https://en.wikipedia.org/w/api.php?action=parse&section=0&prop=text&format=json&page=Chair")
+def wiki_repseonse(topic):
+    URL = f"https://en.wikipedia.org/w/api.php?action=parse&section=0&prop=text&format=json&page={topic}"
+    response_API = requests.get(URL)
     package_response = json.loads(response_API.text).get("parse")
 
     title = package_response.get("title")
@@ -26,6 +27,4 @@ def wiki_repseonse():
     print(count)
     main.create_Wiki(Wiki=Wiki_page, db=db)
     
-    
-
-wiki_repseonse()
+wiki_repseonse("Vipps")
