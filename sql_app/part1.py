@@ -8,7 +8,7 @@ db = SessionLocal()
 
 
 def wiki_repseonse():
-    response_API = requests.get("https://en.wikipedia.org/w/api.php?action=parse&section=0&prop=text&format=json&page=Vipps")
+    response_API = requests.get("https://en.wikipedia.org/w/api.php?action=parse&section=0&prop=text&format=json&page=Chair")
     package_response = json.loads(response_API.text).get("parse")
 
     title = package_response.get("title")
@@ -21,10 +21,11 @@ def wiki_repseonse():
     
     Wiki_page = models.Wiki(
         Title = title,
-        Title_count = count
+        Title_Count= count
     )
-
-    main.create_Wiki(Wiki=Wiki_page, db= db)
-    
     print(count)
+    main.create_Wiki(Wiki=Wiki_page, db=db)
+    
+    
 
+wiki_repseonse()
