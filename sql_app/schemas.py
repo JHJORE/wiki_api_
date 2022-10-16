@@ -3,7 +3,7 @@ from pydantic import BaseModel
 
 class WikiBase(BaseModel):
     Title_Count: int
-    Tilte : str
+    Title : str
     
 class WikiCreate(WikiBase):
     pass
