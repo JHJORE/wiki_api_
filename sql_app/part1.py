@@ -4,11 +4,12 @@ from bs4 import BeautifulSoup
 import database 
 import models, main
 
-db = database.SessionLocal()
+
 
 
 def wiki_repseonse(topic):
-    
+
+    db = database.SessionLocal()
     URL = f"https://en.wikipedia.org/w/api.php?action=parse&section=0&prop=text&format=json&page={topic}"
     response_API = requests.get(URL)
     package_response = json.loads(response_API.text).get("parse")

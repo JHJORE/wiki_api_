@@ -14,4 +14,5 @@ def create_Wiki(db: Session, Wiki: schemas.WikiCreate):
     db.add(db_Wiki)
     db.commit()
     db.refresh(db_Wiki)
+    print("curd")
     return db_Wiki

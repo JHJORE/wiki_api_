@@ -14,7 +14,6 @@ models.Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
 
-# templates = Jinja2Templates(directory="templates")
 
 def get_db():
     db = SessionLocal()
@@ -23,22 +22,6 @@ def get_db():
     finally:
         db.close()
 
-# templates = Jinja2Templates(directory="templates")
-
-# @app.get("/", response_class=HTMLResponse)
-# async def home(request: Request):
-#     data = {
-#         "page": "Home page"
-#     }
-#     return templates.TemplateResponse("page.html", {"request": request, "data": data})
-
-
-# @app.get("/page/{page_name}", response_class=HTMLResponse)
-# async def page(request: Request, page_name: str):
-#     data = {
-#         "page": page_name
-#     }
-#     return templates.TemplateResponse("page.html", {"request": request, "data": data})
 
 @app.post("/wiki/", response_model=schemas.Wiki)
 def create_Wiki(Wiki: schemas.WikiCreate, db: Session = Depends(get_db)):
