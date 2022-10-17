@@ -1,8 +1,9 @@
 import json
 import requests
 from bs4 import BeautifulSoup
-import database 
-import models, main
+from models import Wiki
+from main import create_Wiki
+import database
 
 db = database.SessionLocal()
 
@@ -20,10 +21,10 @@ def wiki_repseonse(topic):
     for page in soup.findAll('p'):
         count += page.getText().count(title)
     
-    Wiki_page = models.Wiki(
+    Wiki_page = Wiki(
         Title = title,
         Title_Count= count
     )
     print(count)
-    main.create_Wiki(Wiki=Wiki_page, db=db)
+    create_Wiki(Wiki=Wiki_page, db=db)
     
